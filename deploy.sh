@@ -23,7 +23,7 @@ source .env
 
 # Step 1: Start containers
 echo -e "\n${YELLOW}[1/5]${NC} Starting Docker containers..."
-docker-compose down -v 2>/dev/null || true
+docker-compose down 2>/dev/null || true
 docker-compose up -d
 
 # Step 2: Wait for services to be ready
@@ -97,6 +97,13 @@ for SITE in "${SITES[@]}"; do
         echo -e "${GREEN}✓ Created ${SITE}.${DOMAIN_CURRENT_SITE}${NC}"
     fi
 done
+
+# Step 4b: Activate local Gutenberg plugin if available
+if [ -d "./wordpress/wp-content/plugins/mon-bloc" ]; then
+    echo -e "\n${YELLOW}[4b/5]${NC} Activating plugin mon-bloc..."
+    docker-compose exec -T wpcli wp --allow-root plugin activate mon-bloc >/dev/null 2>&1 || true
+    echo -e "${GREEN}✓ Plugin mon-bloc activated${NC}"
+fi
 
 # Step 5: Display deployment information
 echo -e "\n${YELLOW}[5/5]${NC} Deployment complete!"

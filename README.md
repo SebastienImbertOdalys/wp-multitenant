@@ -61,7 +61,8 @@ Puis appuyer sur `Ctrl+X`, `Y`, `Entrée` pour enregistrer.
 
 ### 5. Données WordPress locales
 
-Le dossier local `wordpress/` peut rester vide: le code WordPress est stocké dans le volume Docker nommé `wordpress_data` monté sur `/var/www/html`.
+Le dossier local `wordpress/` est un bind mount vers `/var/www/html`.
+WordPress y est donc visible et éditable depuis VS Code (dont `wp-content/plugins`).
 
 ## 📁 Structure du projet
 
@@ -79,6 +80,27 @@ wp-multitenant/
 ```
 
 ## 🔧 Gestion de la multisite
+
+### Développement de bloc Gutenberg (mon-bloc)
+
+```bash
+# 1) Déployer la stack (génère ./wordpress au premier boot)
+./deploy.sh
+
+# 2) Créer/installer le bloc sur l'hôte puis l'activer via WP-CLI
+chmod +x setup-block.sh
+./setup-block.sh mon-bloc
+
+# 3) Lancer le watcher pour hot reload
+cd wordpress/wp-content/plugins/mon-bloc
+npm start
+```
+
+Les fichiers source du bloc sont éditables ici:
+
+```bash
+wordpress/wp-content/plugins/mon-bloc/src/
+```
 
 ### Créer un nouveau site réseau
 
@@ -142,6 +164,8 @@ docker-compose logs -f [service]
 ```bash
 docker-compose down -v
 ```
+
+Note: `./deploy.sh` est non-destructif pour les volumes. La commande ci-dessus reste la commande de reset complet.
 
 ### Accéder à la base de données
 
@@ -235,6 +259,11 @@ Voir `.env.example` pour la liste complète. Principales :
 | `HTTP_PORT` | `8080` | Port HTTP local |
 | `DEBUG` | `false` | Mode debug WordPress |
 | `NETWORK_SITES` | `odalys-vacances,odalys-city` | Sites réseau à créer |
+
+## 🧱 Bind Mounts et Persistance
+
+- WordPress: bind mount `./wordpress:/var/www/html` (code visible sur l'hôte)
+- Base de données: volume nommé `mysql_data` (persistance DB)
 
 ## 🤝 Support & Contributions
 

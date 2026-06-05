@@ -1,0 +1,11 @@
+# Ignore local WordPress bind mount content by default
+wordpress/*
+
+# Keep plugin tree for block development
+!wordpress/wp-content/
+!wordpress/wp-content/plugins/
+!wordpress/wp-content/plugins/mon-bloc/
+!wordpress/wp-content/plugins/mon-bloc/**
+
+# Ignore heavy/generated build artifacts inside plugin
+wordpress/wp-content/plugins/mon-bloc/node_modules/
