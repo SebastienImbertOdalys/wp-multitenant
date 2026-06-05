@@ -16,6 +16,12 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
+		'attributes' => array(
+			'content' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
 		'textdomain' => 'mon-bloc',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',

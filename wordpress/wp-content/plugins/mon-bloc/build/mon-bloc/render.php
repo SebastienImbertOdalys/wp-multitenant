@@ -11,5 +11,5 @@
  */
 ?>
 <p <?php echo get_block_wrapper_attributes(); ?>>
-	<?php esc_html_e( 'Mon Bloc – hello from a dynamic block!', 'mon-bloc' ); ?>
+    <?php echo wp_kses_post( $attributes['content'] ?? '' ); ?>
 </p>
