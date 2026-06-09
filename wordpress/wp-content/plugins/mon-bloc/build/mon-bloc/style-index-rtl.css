@@ -8,7 +8,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 .wp-block-create-block-mon-bloc {
-  background-color: #21759b;
+  background: linear-gradient(to left, blue, pink);
   color: #fff;
   padding: 2px;
 }

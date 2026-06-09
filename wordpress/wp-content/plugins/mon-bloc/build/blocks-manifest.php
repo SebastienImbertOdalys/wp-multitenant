@@ -20,6 +20,14 @@ return array(
 			'content' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'startDate' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'endDate' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'textdomain' => 'mon-bloc',

@@ -15,6 +15,14 @@
     "content": {
       "type": "string",
       "default": ""
+    },
+    "startDate": {
+      "type": "string",
+      "default": ""
+    },
+    "endDate": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "mon-bloc",
